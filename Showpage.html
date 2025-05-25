@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Book Details-page</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap"
+			rel="stylesheet" />
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			}
+
+			body {
+				background: linear-gradient(135deg, #1c2526 0%, #2e4057 100%);
+				color: #e0e0e0;
+				min-height: 100vh;
+				overflow-x: hidden;
+			}
+
+			header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 1rem 4%;
+				background: linear-gradient(to right, #2e4057, #1c2526);
+				position: sticky;
+				top: 0;
+				z-index: 1000;
+				box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+				backdrop-filter: blur(10px);
+			}
+
+			.header-left {
+				display: flex;
+				align-items: center;
+				gap: 2rem;
+			}
+
+			.back-button {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				color: #e0e0e0;
+				text-decoration: none;
+				font-size: 1rem;
+				font-weight: 600;
+				transition: all 0.3s ease;
+			}
+
+			.back-button:hover {
+				color: #f4c430;
+				transform: translateX(-5px);
+			}
+
+			.back-button svg {
+				width: 20px;
+				height: 20px;
+			}
+			
+			.logo-img {
+				max-height: 40px;
+				width: auto;
+				border: 2px solid rgba(224, 224, 224, 0.3);
+				border-radius: 4px;
+				transition: transform 0.3s ease;
+			}
+
+			.logo-img:hover {
+				transform: scale(1.05);
+			}
+
+			.logo {
+				font-size: 1.8rem;
+				font-weight: 800;
+				color: #e0e0e0;
+				text-decoration: none;
+				text-transform: uppercase;
+				letter-spacing: 2px;
+				transition: transform 0.3s ease;
+			}
+
+			.logo:hover {
+				transform: scale(1.05);
+			}
+
+			.header-icons {
+				display: flex;
+				gap: 1.5rem;
+			}
+
+			.header-icons a {
+				color: #e0e0e0;
+				font-size: 1.3rem;
+				transition: all 0.3s ease;
+			}
+
+			.header-icons a:hover {
+				color: #f4c430;
+				transform: scale(1.1);
+			}
+
+			.cart-icon {
+				position: relative;
+			}
+
+			.cart-count {
+				position: absolute;
+				top: -8px;
+				right: -8px;
+				background: #ff3d00;
+				color: #fff;
+				border-radius: 50%;
+				width: 18px;
+				height: 18px;
+				font-size: 0.7rem;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+			}
+
+			/* Book Section */
+			.book-section {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 4rem 4%;
+				background:
+					linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+					url('E-book website/background.jpg') center/cover no-repeat;
+				min-height: 500px;
+				border-radius: 20px;
+				margin: 1rem 4%;
+				position: relative;
+				overflow: hidden;
+				box-shadow: 0 0 30px rgba(244, 196, 48, 0.3);
+				border: 1px solid rgba(244, 196, 48, 0.2);
+			}
+
+			.book-section::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: radial-gradient(
+					circle,
+					rgba(255, 255, 255, 0.15),
+					transparent
+				);
+				z-index: 1;
+			}
+
+			.book-details {
+				display: flex;
+				align-items: center;
+				gap: 3rem;
+				z-index: 2;
+				max-width: 1200px;
+				width: 100%;
+			}
+
+			.book-image {
+				width: 300px;
+				height: 450px;
+				border-radius: 15px;
+				box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+				transition: transform 0.5s ease;
+				animation: enhancedMove 8s infinite ease-in-out;
+			}
+
+			@keyframes enhancedMove {
+				0%,
+				100% {
+					transform: translate(0, 0) rotate(0deg) scale(1);
+				}
+				25% {
+					transform: translate(15px, -15px) rotate(3deg) scale(1.02);
+				}
+				50% {
+					transform: translate(0, 0) rotate(0deg) scale(1);
+				}
+				75% {
+					transform: translate(-15px, 15px) rotate(-3deg) scale(1.02);
+				}
+			}
+
+			.book-image:hover {
+				transform: perspective(1000px) rotateY(10deg) scale(1.05);
+			}
+
+			.book-info {
+				flex: 1;
+			}
+
+			.book-info h1 {
+				font-size: 3rem;
+				color: #f4c430;
+				margin-bottom: 1rem;
+				font-weight: 900;
+				text-transform: uppercase;
+				text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+			}
+
+			.book-info .author {
+				font-size: 1.2rem;
+				color: #e0e0e0;
+				margin-bottom: 1rem;
+				opacity: 0.9;
+			}
+
+			.book-info .rating {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				margin-bottom: 1.5rem;
+				color: #f4c430;
+			}
+
+			.book-info .price {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				padding: 0.8rem 1.5rem;
+				background: linear-gradient(to right, #2e4057, #1c2526);
+				border-radius: 10px;
+				box-shadow: 0 0 15px rgba(244, 196, 48, 0.3);
+				width: fit-content;
+			}
+
+			.book-info .price .old-price {
+				font-size: 1.8rem;
+				color: #e0e0e0;
+				position: relative;
+				opacity: 0;
+				animation:
+					showOldPrice 1s forwards,
+					strikeThrough 1s 1s forwards;
+			}
+
+			@keyframes showOldPrice {
+				0% {
+					opacity: 0;
+					transform: translateY(10px);
+				}
+				100% {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			@keyframes strikeThrough {
+				0% {
+					text-decoration: none;
+					opacity: 1;
+				}
+				100% {
+					text-decoration: line-through;
+					opacity: 0.6;
+				}
+			}
+
+			.book-info .price .current-price {
+				font-size: 1.8rem;
+				font-weight: 700;
+				color: #e0e0e0;
+				opacity: 0;
+				animation: showCurrentPrice 1s 2s forwards;
+			}
+
+			@keyframes showCurrentPrice {
+				0% {
+					opacity: 0;
+					transform: translateY(10px);
+				}
+				100% {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			/* Description Section */
+			.description-section {
+				padding: 4rem 4%;
+				background: linear-gradient(
+					to bottom,
+					rgba(255, 255, 255, 0.05),
+					rgba(0, 0, 0, 0.1)
+				);
+				position: relative;
+			}
+
+			.description-section::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: url('E-book website/background.jpg') center/cover no-repeat;
+				opacity: 0.05;
+				z-index: -1;
+			}
+
+			.description-section h2 {
+				font-size: 2.5rem;
+				color: #e0e0e0;
+				margin-bottom: 2rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				text-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+			}
+
+			.description-section p {
+				font-size: 1.1rem;
+				line-height: 1.8;
+				max-width: 800px;
+				margin: 0 auto;
+				opacity: 0.9;
+				background: rgba(0, 0, 0, 0.3);
+				padding: 1.5rem;
+				border-radius: 10px;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+			}
+
+			/* Reviews Section */
+			.reviews-section {
+				padding: 4rem 4%;
+				background: linear-gradient(
+					to bottom,
+					rgba(0, 0, 0, 0.1),
+					rgba(255, 255, 255, 0.05)
+				);
+			}
+
+			.reviews-section h2 {
+				font-size: 2.5rem;
+				color: #e0e0e0;
+				margin-bottom: 2rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				text-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+			}
+
+			.reviews-container {
+				display: flex;
+				gap: 2rem;
+				overflow-x: auto;
+				padding: 1rem 0;
+				-ms-overflow-style: none;
+				scrollbar-width: none;
+			}
+
+			.reviews-container::-webkit-scrollbar {
+				display: none;
+			}
+
+			.review-card {
+				background: linear-gradient(135deg, #2e4057, #1c2526);
+				border-radius: 15px;
+				padding: 2rem;
+				min-width: 280px;
+				flex: 0 0 320px;
+				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+				transition: transform 0.3s ease;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.review-card::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: radial-gradient(
+					circle,
+					rgba(244, 196, 48, 0.1),
+					transparent
+				);
+				z-index: 0;
+			}
+
+			.review-card:hover {
+				transform: translateY(-5px);
+			}
+
+			.review-card > * {
+				position: relative;
+				z-index: 1;
+			}
+
+			.review-header {
+				display: flex;
+				align-items: center;
+				margin-bottom: 1rem;
+			}
+
+			.reviewer-avatar {
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				margin-right: 1rem;
+				border: 2px solid #f4c430;
+			}
+
+			.reviewer-info h4 {
+				font-size: 1.1rem;
+				margin-bottom: 0.2rem;
+				color: #e0e0e0;
+			}
+
+			.reviewer-info span {
+				font-size: 0.9rem;
+				opacity: 0.7;
+			}
+
+			.rating {
+				display: flex;
+				margin-bottom: 1rem;
+				color: #f4c430;
+			}
+
+			.review-text {
+				font-style: italic;
+				line-height: 1.6;
+				font-size: 0.95rem;
+				opacity: 0.9;
+			}
+
+			/* Action Buttons */
+			.action-buttons {
+				position: sticky;
+				bottom: 0;
+				background: linear-gradient(to top, #1c2526, rgba(28, 37, 38, 0.9));
+				padding: 1.5rem 4%;
+				display: flex;
+				justify-content: center;
+				gap: 2rem;
+				box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.3);
+				backdrop-filter: blur(5px);
+				z-index: 1000;
+			}
+
+			.action-button {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 1rem 2rem;
+				font-weight: 700;
+				font-size: 1.1rem;
+				border-radius: 50px;
+				text-transform: uppercase;
+				text-decoration: none;
+				transition: all 0.3s ease;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+			}
+
+			.buy-now {
+				background: linear-gradient(to right, #f4c430, #ff8c00);
+				color: #1c2526;
+			}
+
+			.add-to-cart {
+				background: linear-gradient(to right, #e0e0e0, #b0b0b0);
+				color: #1c2526;
+			}
+
+			.action-button:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+			}
+
+			.action-button svg {
+				width: 20px;
+				height: 20px;
+			}
+
+			/* Responsive Styles */
+			@media (max-width: 768px) {
+				.book-section {
+					padding: 2rem;
+					min-height: 600px;
+					margin: 1rem 2%;
+				}
+
+				.book-details {
+					flex-direction: column;
+					text-align: center;
+					gap: 2rem;
+				}
+
+				.book-image {
+					width: 220px;
+					height: 330px;
+				}
+
+				.book-info h1 {
+					font-size: 2.5rem;
+				}
+
+				.book-info .author {
+					font-size: 1rem;
+				}
+
+				.book-info .price {
+					margin: 0 auto;
+				}
+
+				.book-info .price .current-price {
+					font-size: 1.5rem;
+				}
+
+				.book-info .price .old-price {
+					font-size: 1.5rem;
+				}
+
+				.description-section h2 {
+					font-size: 2rem;
+				}
+
+				.description-section p {
+					font-size: 1rem;
+				}
+
+				.reviews-section h2 {
+					font-size: 2rem;
+				}
+
+				.action-buttons {
+					flex-direction: column;
+					gap: 1rem;
+					padding: 1rem 2%;
+				}
+
+				.action-button {
+					width: 100%;
+					justify-content: center;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.book-section {
+					padding: 1.5rem;
+					min-height: 550px;
+					margin: 1rem 1%;
+				}
+
+				.book-image {
+					width: 180px;
+					height: 270px;
+				}
+
+				.book-info h1 {
+					font-size: 2rem;
+				}
+
+				.book-info .author {
+					font-size: 0.9rem;
+				}
+
+				.book-info .price .current-price {
+					font-size: 1.3rem;
+				}
+
+				.book-info .price .old-price {
+					font-size: 1.3rem;
+				}
+
+				.description-section h2 {
+					font-size: 1.8rem;
+				}
+
+				.description-section p {
+					font-size: 0.9rem;
+				}
+
+				.reviews-section h2 {
+					font-size: 1.8rem;
+				}
+
+				.action-button {
+					padding: 0.8rem 1.5rem;
+					font-size: 1rem;
+				}
+
+				.action-button svg {
+					width: 18px;
+					height: 18px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="header-left">
+				<a href="index.html" class="back-button">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round">
+						<path d="M19 12H5M12 19l-7-7 7-7"></path>
+					</svg>
+				</a>
+				<a href="index.html">
+					<img src="brand.png" alt="Naveen Kewat Logo" class="logo-img"
+				/></a>
+			</div>
+			<div class="header-icons">
+				<a href="#" class="cart-icon">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round">
+						<circle cx="9" cy="21" r="1"></circle>
+						<circle cx="20" cy="21" r="1"></circle>
+						<path
+							d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+					</svg>
+					<span class="cart-count">1</span>
+				</a>
+			</div>
+		</header>
+
+		<!-- Book Section -->
+		<section class="book-section">
+			<div class="book-details">
+				<img
+					src="E-book website/Bookcover.png"
+					alt="Book Cover"
+					class="book-image" />
+				<div class="book-info">
+					<h1 id="book-title">THE 48 LAWS OF POWER</h1>
+					<div class="author" id="book-author">By Robert Greene</div>
+					<div class="rating">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="currentColor">
+							<polygon
+								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+						</svg>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="currentColor">
+							<polygon
+								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+						</svg>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="currentColor">
+							<polygon
+								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+						</svg>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="currentColor">
+							<polygon
+								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+						</svg>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="currentColor">
+							<polygon
+								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+						</svg>
+						<span style="color: #e0e0e0; font-size: 1.1rem">(4.8 / 5)</span>
+					</div>
+					<div class="price">
+						<span class="old-price" id="old-price">₹179</span>
+						<span class="current-price" id="current-price">₹119</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="description-section">
+			<h2>Book Description</h2>
+			<p id="book-description">
+				"The 48 Laws of Power" by Robert Greene is a timeless guide to
+				understanding the dynamics of power and influence. Drawing from
+				historical examples and philosophical insights, this book offers 48 laws
+				to navigate complex social and professional landscapes. Whether you're
+				aiming to rise in your career, master strategic thinking, or simply
+				understand human behavior, this book provides profound lessons that are
+				both practical and thought-provoking. Perfect for ambitious minds
+				looking to gain an edge in life.
+			</p>
+		</section>
+
+		<section class="reviews-section">
+			<h2>Reader Reviews</h2>
+			<div class="reviews-container" id="reviews-container">
+				<div class="review-card">
+					<div class="review-header">
+						<img
+							src="E-book website/sad.png"
+							alt="Reviewer Avatar"
+							class="reviewer-avatar" />
+						<div class="reviewer-info">
+							<h4>Aditya Sharma</h4>
+							<span>Verified Buyer</span>
+						</div>
+					</div>
+					<div class="rating">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="currentColor">
+							<polygon
+								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+						</svg>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="currentColor">
+							<polygon
+								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+						</svg>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="currentColor">
+							<polygon
+								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+						</svg>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="currentColor">
+							<polygon
+								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+						</svg>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="currentColor">
+							<polygon
+								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+						</svg>
+					</div>
+					<p class="review-text">
+						"The 48 Laws of Power is a game-changer! The insights are profound
+						and applicable in every sphere of life. A must-have for ambitious
+						minds."
+					</p>
+				</div>
+				<div class="review-card">
+					<div class="review-header">
+						<img
+							src="E-book website/avtar.jpg"
+							alt="Reviewer Avatar"
+							class="reviewer-avatar" />
+						<div class="reviewer-info">
+							<h4>Priya Patel</h4>
+							<span>Verified Buyer</span>
+						</div>
+					</div>
+					<div class="rating">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="currentColor">
+							<polygon
+								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+						</svg>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="currentColor">
+							<polygon
+								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+						</svg>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="currentColor">
+							<polygon
+								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+						</svg>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="currentColor">
+							<polygon
+								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+						</svg>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2">
+							<polygon
+								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+						</svg>
+					</div>
+					<p class="review-text">
+						"An engaging read with deep psychological insights. The digital
+						format is perfect for quick reference and highlighting key points."
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<div class="action-buttons">
+			<a href="#" class="action-button buy-now">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="20"
+					height="20"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round">
+					<line x1="12" y1="5" x2="12" y2="19"></line>
+					<line x1="5" y1="12" x2="19" y2="12"></line>
+				</svg>
+				Buy Now
+			</a>
+			<a href="#" class="action-button add-to-cart">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="20"
+					height="20"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round">
+					<circle cx="9" cy="21" r="1"></circle>
+					<circle cx="20" cy="21" r="1"></circle>
+					<path
+						d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+				</svg>
+				Add to Cart
+			</a>
+		</div>
+
+		<script>
+			const books = {
+				'48-laws-of-power': {
+					title: 'The 48 Laws of Power',
+					author: 'Robert Greene',
+					image: 'E-book website/Bookcover.png',
+					description:
+						'"The 48 Laws of Power" by Robert Greene is a timeless guide to understanding the dynamics of power and influence. Drawing from historical examples and philosophical insights, this book offers 48 laws to navigate complex social and professional landscapes. Whether you\'re aiming to rise in your career, master strategic thinking, or simply understand human behavior, this book provides profound lessons that are both practical and thought-provoking. Perfect for ambitious minds looking to gain an edge in life.',
+					reviews: [
+						{
+							name: 'Aditya Sharma',
+							rating: 5,
+							text: 'The 48 Laws of Power is a game-changer! The insights are profound and applicable in every sphere of life. A must-have for ambitious minds.',
+							avatar: 'E-book website/sad.png',
+						},
+						{
+							name: 'Priya Patel',
+							rating: 4,
+							text: 'An engaging read with deep psychological insights. The digital format is perfect for quick reference and highlighting key points.',
+							avatar: 'E-book website/avtar.jpg',
+						},
+					],
+					oldPrice: '₹179',
+					currentPrice: '₹119',
+				},
+				'digital-mind-trap': {
+					title: 'The Millionaire Fastlane',
+					author: 'Naveen Kewat',
+					image: 'E-book website/cover.png',
+					description:
+						'A deep dive into the psychological effects of the digital age, "Digital Mind Trap" by Naveen Kewat explores how technology shapes our thoughts, behaviors, and relationships. This book offers practical strategies to break free from digital overload and reclaim control over your mind.',
+					reviews: [
+						{
+							name: 'Rahul Verma',
+							rating: 4,
+							text: 'Incredibly insightful! A must-read for anyone feeling overwhelmed by the digital world.',
+							avatar: 'E-book website/sad.png',
+						},
+					],
+					oldPrice: '₹249',
+					currentPrice: '₹149',
+				},
+			};
+
+			// Get book ID from URL
+			const urlParams = new URLSearchParams(window.location.search);
+			const bookId = urlParams.get('book') || '48-laws-of-power';
+			const book = books[bookId];
+
+			if (book) {
+				document.querySelector('#book-title').textContent = book.title;
+				document.querySelector(
+					'#book-author'
+				).textContent = `By ${book.author}`;
+				document.querySelector('.book-image').src = book.image;
+				document.querySelector('#book-description').textContent =
+					book.description;
+				document.querySelector('#old-price').textContent = book.oldPrice;
+				document.querySelector('#current-price').textContent =
+					book.currentPrice;
+
+				const reviewsContainer = document.querySelector('#reviews-container');
+				reviewsContainer.innerHTML = '';
+				book.reviews.forEach(review => {
+					const stars = Array(review.rating)
+						.fill(
+							'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>'
+						)
+						.join('');
+					reviewsContainer.innerHTML += `
+                    <div class="review-card">
+                        <div class="review-header">
+                            <img src="${review.avatar}" alt="Reviewer Avatar" class="reviewer-avatar">
+                            <div class="reviewer-info">
+                                <h4>${review.name}</h4>
+                                <span>Verified Buyer</span>
+                            </div>
+                        </div>
+                        <div class="rating">${stars}</div>
+                        <p class="review-text">"${review.text}"</p>
+                    </div>
+                `;
+				});
+			} else {
+				document.querySelector('.book-details').innerHTML =
+					'<h2>Book Not Found</h2>';
+			}
+
+			// Preload images to ensure they load correctly
+			const images = [
+				'E-book website/Bookcover.png',
+				'E-book website/cover.png',
+				'E-book website/sad.png',
+				'E-book website/avtar.jpg',
+			];
+			images.forEach(src => {
+				const img = new Image();
+				img.src = src;
+			});
+		</script>
+	</body>
+</html>
